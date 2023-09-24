@@ -1,29 +1,35 @@
-import {Route, Routes, Link} from 'react-router-dom'
-import About from './pages/About'
-import Contact from './pages/Contact'
-import Home from './pages/Home'
-import NotFound from './pages/NotFound'
-
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About';
+import "./index.css";
+import Shop from './pages/Shop';
+import "./server";
+import Footer from './components/Footer';
+import ShirtDetails from './pages/ShirtDetails';
 
 function App() {
 
   return (
-    <>
-      <nav>
-          <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
-          </ul>
-      </nav>
+    <BrowserRouter>
+      <header className='header'>
+        <Link to="/" className='logo'>Codegnet</Link>
+        <nav className='nav'>
+          <Link to="/about" className='nav-item'>About</Link>
+          <Link to="/shop" className='nav-item'>Shop</Link>
+        </nav>
+      </header>
 
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/contact' element={<Contact/>}/>
-        <Route path='/contact/:id' element={<Contact/>}/>
-        <Route path='/about' element={<About/>}/>
-        <Route path='*' element={<NotFound/>}/>
-      </Routes>
-    </>
+      <Routes>        
+        <Route path='/' element={<Home />}/>
+        <Route path='/about' element={<About />}/>
+        <Route path='/shop' element={<Shop />}/>
+        <Route path='/shop/:id' element={<ShirtDetails />}/>
+      </Routes>   
+
+      <footer>
+        <Footer/>
+      </footer> 
+    </BrowserRouter>
   )
 }
 

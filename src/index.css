@@ -1,0 +1,102 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.logo{
+  font-size: 3rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: purple;
+}
+
+.nav{
+  display: flex;
+  gap: 1rem;
+  font-size: 1.5rem;
+  align-items: center;
+}
+
+.nav-item{
+  text-decoration: none;
+}
+
+.shop, .home, .about{
+  margin-top: 3rem;
+  width: 80%;
+  margin-inline: auto;
+}
+
+.shop h2{
+  text-align: center;
+  font-size: 2.2rem;
+}
+
+.shirt-img{
+  width: 300px;
+}
+
+.shirt-container{
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-inline: auto;
+}
+
+.footer{
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.shirt-details-container{
+  width: 1200px;
+  margin-inline: auto;
+}
+
+.shirt-details{
+  display: flex;
+}
+
+.shirt-details img{
+  width: 60%;
+}
+
+.shirt-details .details{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.shirt-details .details h3{
+  font-size: 2rem;
+}
+
+.shirt-details .details .price{
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.shirt-details .details button{
+  border: none;
+  cursor: pointer;
+  padding: .6rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  transition: .4s;
+}
+
+.shirt-details .details button:hover{
+  background-color: aquamarine;
+  transition: .4s;
+}

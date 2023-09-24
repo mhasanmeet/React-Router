@@ -1,8 +1,11 @@
-import React from 'react'
+import "../index.css";
 
-function About() {
+const About = () => {
   return (
-    <div>About</div>
+    <div className='about'>
+      <h2>Hello We're DevShopBD!</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In, fugiat? Possimus voluptatibus consectetur amet sunt harum fuga doloremque culpa molestias.</p>
+    </div>
   )
 }
 
