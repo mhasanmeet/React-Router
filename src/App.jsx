@@ -12,6 +12,9 @@ import Reviews from './pages/landlord/Reviews';
 import LandlordLayout from './components/LandlordLayout';
 import LandlordProperties from './pages/landlord/LandlordProperties';
 import LandlordPropertiesDetails from './pages/landlord/LandLordPropertiesDetails';
+import PropertyInfo from './pages/landlord/PropertyInfo';
+import PropertyPhoto from './pages/landlord/PropertyPhoto';
+import PropertyPricing from './pages/landlord/PropertyPricing';
 
 function App() {
 
@@ -38,7 +41,15 @@ function App() {
             {/* <NavLink to="/landlord/properties"></NavLink> */}
             <Route path='properties' element={<LandlordProperties/>}/>
             {/* <NavLink to="/landlord/properties/:id"></NavLink> */}
-            <Route path='properties/:id' element={<LandlordPropertiesDetails/>}/>
+            
+            <Route path='properties/:id' element={<LandlordPropertiesDetails/>}>
+              {/* <NavLink to="/landlord/properties/:id/info"></NavLink>, it is default route that's why we eliminate info route, rather use index */}
+              <Route index element={<PropertyInfo/>}/>
+              {/* <NavLink to="/landlord/properties/:id/photo"></NavLink> */}
+              <Route path='photo' element={<PropertyPhoto/>}/>
+              {/* <NavLink to="/landlord/properties/:id/pricing"></NavLink> */}
+              <Route path='pricing' element={<PropertyPricing/>}/>
+            </Route>
           </Route>
         </Route>   
       </Routes>   

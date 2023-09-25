@@ -265,3 +265,26 @@
 .landlord-property-details .property-info p{
   font-size: 1.5rem;
 }
+
+/* Property Info Navbar */
+.property-info-nav{
+  margin-top: 1rem;
+}
+
+.property-info-nav > .property-info-nav-active, .property-info-nav-link{
+  font-size: 1.2rem;
+  margin-left: 1.5rem;
+  color: #230b90;
+  background-color: bisque;
+  padding: .3rem .5rem;
+}
+
+.property-info-nav .property-info-nav-link{
+  color: #f811ab;
+  background-color: #230b90;
+}
+
+/* Landlord Properties Details */
+.property-details-property-photo img{
+  width: 10rem;
+}

@@ -19,4 +19,5 @@ Install React Router 6 `npm i react-router-dom`
 * Index in Relative routes
 * end
 * relative path route - `..`
-* relative absolute path property - `to=".." relative="path"` 
+* relative absolute path property - `to=".." relative="path"`
+* outlet context api - `<Outlet context={}/>`

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { NavLink, useParams } from "react-router-dom"
+import { NavLink, Outlet, useParams } from "react-router-dom"
 import arrow from "../../assets/arrow-left.svg";
 import "../../index.css";
 
@@ -35,6 +35,18 @@ const LandlordPropertiesDetails = () => {
           <p>${propertyDetails.price}</p>
         </div>
       </div>
+
+      <nav className="property-info-nav">
+        {/* <NavLink to="/landlord/properties/1/info"></NavLink>, it is default route that's why we eliminate info route */}
+        <NavLink to='.' end className={ ({isActive}) => isActive ? "property-info-nav-active" : "property-info-nav-link" }>Details</NavLink>
+        {/* <NavLink to="/landlord/properties/:id/photo"></NavLink> */}
+        <NavLink to='photo' className={ ({isActive}) => isActive ? "property-info-nav-active" : "property-info-nav-link" }>Photo</NavLink>
+        {/* <NavLink to="/landlord/properties/:id/pricing"></NavLink> */}
+        <NavLink to='pricing' className={ ({isActive}) => isActive ? "property-info-nav-active" : "property-info-nav-link" }>Pricing</NavLink>
+      </nav>
+
+      {/* Get landlord-property-details route wrapper in here from app.jsx routes */}
+      <Outlet context={{propertyDetails}}/>
     </div>
   )
 }
