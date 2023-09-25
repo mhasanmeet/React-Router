@@ -16,16 +16,16 @@ function App() {
   return (
     <BrowserRouter>
       <Routes> 
-        <Route element={<Layout/>}>        
-          <Route path='/' element={<Home />}/>
-          <Route path='/about' element={<About />}/>
-          <Route path='/properties' element={<Properties />}/>
-          <Route path='/properties/:id' element={<PropertyDetails/>}/>
+        <Route path='/' element={<Layout/>}>        
+          <Route index element={<Home />}/>
+          <Route path='about' element={<About />}/>
+          <Route path='properties' element={<Properties />}/>
+          <Route path='properties/:id' element={<PropertyDetails/>}/>
 
           <Route path='/landlord' element={<LandlordLayout/>}>
-            <Route path='/landlord' element={<Dashboard/>}/>
-            <Route path='/landlord/income' element={<Income/>}/>
-            <Route path='/landlord/reviews' element={<Reviews/>}/>
+            <Route index element={<Dashboard/>}/>
+            <Route path='income' element={<Income/>}/>
+            <Route path='reviews' element={<Reviews/>}/>
           </Route>
         </Route>   
       </Routes>   

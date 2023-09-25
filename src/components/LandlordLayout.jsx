@@ -1,14 +1,14 @@
-import { Link, Outlet } from "react-router-dom"
+import { NavLink, Outlet } from "react-router-dom"
 
 const LandlordLayout = () => {
   return (
     <>    
         <nav>  
-            <Link to="/landlord">Dashboard</Link>        
-            <Link to="/landlord/income">Income</Link>        
-            <Link to="/landlord/reviews">Review</Link>                
+            <NavLink to="/landlord" end className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>Dashboard</NavLink>        
+            <NavLink to="/landlord/income" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>Income</NavLink>        
+            <NavLink to="/landlord/reviews" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>Review</NavLink>                
         </nav>
-        
+
         <Outlet/>
     </>
   )

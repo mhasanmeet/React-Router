@@ -27,8 +27,12 @@
   align-items: center;
 }
 
-.nav-item{
+.nav-link{
   text-decoration: none;
+}
+
+.nav-link-active{
+  color: #ff0aad;
 }
 
 .properties, .home, .about, .dashboard, .income, .reviews{
