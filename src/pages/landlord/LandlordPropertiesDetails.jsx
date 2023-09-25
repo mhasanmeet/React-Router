@@ -19,7 +19,8 @@ const LandlordPropertiesDetails = () => {
 
   return (
     <div className="landlord-property-details">
-      <NavLink to='/landlord/properties' className="nav">
+      {/* <NavLink to="/landlord/properties"></NavLink> */}
+      <NavLink to='..' relative="path" className="nav">
         <img src={arrow} alt="" />
         <p>
           Back to all Properties

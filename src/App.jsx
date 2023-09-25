@@ -18,17 +18,26 @@ function App() {
   return (
     <BrowserRouter>
       <Routes> 
-        <Route path='/' element={<Layout/>}>        
+        <Route path='/' element={<Layout/>}>
+          {/* <NavLink to="/"></NavLink> */}
           <Route index element={<Home />}/>
+          {/* <NavLink to="/about"></NavLink> */}
           <Route path='about' element={<About />}/>
+          {/* <NavLink to="/properties"></NavLink> */}
           <Route path='properties' element={<Properties />}/>
+          {/* <NavLink to="/properties/:id"></NavLink> */}
           <Route path='properties/:id' element={<PropertyDetails/>}/>
 
           <Route path='/landlord' element={<LandlordLayout/>}>
+            {/* <NavLink to="/landlord"></NavLink> */}
             <Route index element={<Dashboard/>}/>
+            {/* <NavLink to="/landlord/income"></NavLink> */}
             <Route path='income' element={<Income/>}/>
+            {/* <NavLink to="/landlord/reviews"></NavLink> */}
             <Route path='reviews' element={<Reviews/>}/>
+            {/* <NavLink to="/landlord/properties"></NavLink> */}
             <Route path='properties' element={<LandlordProperties/>}/>
+            {/* <NavLink to="/landlord/properties/:id"></NavLink> */}
             <Route path='properties/:id' element={<LandlordPropertiesDetails/>}/>
           </Route>
         </Route>   
