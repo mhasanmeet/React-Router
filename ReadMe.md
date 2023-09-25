@@ -13,3 +13,6 @@ Install React Router 6 `npm i react-router-dom`
 
 ## Nested Routes
 
+* Layout 
+* Outlet
+
