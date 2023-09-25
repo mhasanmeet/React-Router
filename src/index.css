@@ -31,7 +31,7 @@
   text-decoration: none;
 }
 
-.properties, .home, .about{
+.properties, .home, .about, .dashboard, .income, .reviews{
   margin-top: 3rem;
   width: 1200px;
   margin-inline: auto;

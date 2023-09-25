@@ -15,4 +15,5 @@ Install React Router 6 `npm i react-router-dom`
 
 * Layout 
 * Outlet
+* Relative routes
 

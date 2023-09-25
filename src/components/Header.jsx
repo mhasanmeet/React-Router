@@ -4,9 +4,11 @@ const Header = () => {
   return (
     <header className='header'>
         <Link to="/" className='logo'>Urban Properties</Link>
+        
         <nav className='nav'>
           <Link to="/about" className='nav-item'>About</Link>
           <Link to="/properties" className='nav-item'>Properties</Link>
+          <Link to="/landlord" className='nav-item'>Dashboard</Link>
         </nav>
     </header>
   )
