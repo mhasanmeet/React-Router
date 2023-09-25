@@ -11,6 +11,8 @@ const Properties = () => {
             .then(data => setProperties(data.properties))
     }, [])
 
+    console.log(properties)
+
     const propertyElements = properties.map(property => (
         <div key={property.id} className="property-title">
             <Link to={`/properties/${property.id}`}>            

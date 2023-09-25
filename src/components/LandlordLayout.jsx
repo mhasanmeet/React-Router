@@ -1,13 +1,15 @@
 import { NavLink, Outlet } from "react-router-dom"
+import "../index.css";
 
 const LandlordLayout = () => {
   return (
-    <>    
-        <nav>  
-            <NavLink to="/landlord" end className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>Dashboard</NavLink>        
-            <NavLink to="/landlord/income" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>Income</NavLink>        
-            <NavLink to="/landlord/reviews" className={({isActive}) => isActive ? "nav-link-active" : "nav-link"}>Review</NavLink>                
-        </nav>
+    <>  
+        <div className="landlord-properties-menu">  
+            <NavLink to="/landlord" end className={ ({isActive}) => isActive ? "landlord-nav-link-active" : "landlord-nav-link" }>Dashboard</NavLink>        
+            <NavLink to="/landlord/income" className={({isActive}) => isActive ? "landlord-nav-link-active" : "landlord-nav-link"}>Income</NavLink>        
+            <NavLink to="/landlord/properties" className={({isActive}) => isActive ? "landlord-nav-link-active" : "landlord-nav-link"}>Properties</NavLink>                
+            <NavLink to="/landlord/reviews" className={({isActive}) => isActive ? "landlord-nav-link-active" : "landlord-nav-link"}>Review</NavLink>                
+        </div>
 
         <Outlet/>
     </>

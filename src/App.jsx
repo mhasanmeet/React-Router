@@ -10,6 +10,8 @@ import Dashboard from './pages/landlord/Dashboard';
 import Income from './pages/landlord/Income';
 import Reviews from './pages/landlord/Reviews';
 import LandlordLayout from './components/LandlordLayout';
+import LandlordProperties from './pages/landlord/LandlordProperties';
+import LandlordPropertiesDetails from './pages/landlord/LandLordPropertiesDetails';
 
 function App() {
 
@@ -26,6 +28,8 @@ function App() {
             <Route index element={<Dashboard/>}/>
             <Route path='income' element={<Income/>}/>
             <Route path='reviews' element={<Reviews/>}/>
+            <Route path='properties' element={<LandlordProperties/>}/>
+            <Route path='properties/:id' element={<LandlordPropertiesDetails/>}/>
           </Route>
         </Route>   
       </Routes>   
