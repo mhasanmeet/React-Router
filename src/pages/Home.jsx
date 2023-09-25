@@ -3,9 +3,13 @@ import "../index.css";
 
 const Home = () => {
   return (
-    <div className='home'>
-      <h2>We sell Developer T-shirt</h2>
-      Explore our t-shirt <Link to="/shop">Shop</Link>
+    <div className="home">
+      <h2>Get properties for your future</h2>
+      
+      <div className="hero">
+        <img src="https://source.unsplash.com/Bkp3gLygyeA" alt="" />
+        <h3>Explore our Properties <Link to="/properties" className="properties-link">Properties</Link></h3>
+      </div>
     </div>
   )
 }

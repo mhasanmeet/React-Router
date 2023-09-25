@@ -3,8 +3,10 @@
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  text-decoration: none;
 }
 
+/* Header */
 .header{
   display: flex;
   align-items: center;
@@ -29,65 +31,110 @@
   text-decoration: none;
 }
 
-.shop, .home, .about{
+.properties, .home, .about{
   margin-top: 3rem;
-  width: 80%;
+  width: 1200px;
   margin-inline: auto;
 }
 
-.shop h2{
+/* Home */
+.home h2{
+  text-align: center;
+  font-size: 2rem;
+}
+
+.home .hero{
+  display: flex;
+  margin-top: 2rem;
+  gap: 1rem;
+  align-items: center;
+}
+
+.home .hero img{
+  width: 50%;
+}
+
+.home .hero h3{
+  background-color: antiquewhite;
+  padding: .6rem 1rem;
+  font-size: 1.5rem;
+}
+
+.home .hero .properties-link{
+  color: brown;
+  text-decoration: underline;
+}
+
+.home h3{
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+/* Properties */
+.properties h2{
   text-align: center;
   font-size: 2.2rem;
 }
 
-.shirt-img{
-  width: 300px;
-}
-
-.shirt-container{
+.properties .property-container{
   display: flex;
   gap: 2rem;
   margin-top: 2rem;
   flex-wrap: wrap;
   justify-content: space-around;
   margin-inline: auto;
+  gap: 3em;
 }
 
+.properties .property-img{
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.properties .property-info{
+  margin-top: .5rem;
+}
+
+/* Footer */
 .footer{
   margin-top: 2rem;
   text-align: center;
 }
 
-.shirt-details-container{
+/* Details Property */
+.properties-details-container{
   width: 1200px;
   margin-inline: auto;
+  margin-top: 2rem;
 }
 
-.shirt-details{
+.properties-details{
   display: flex;
+  gap: 1rem;
 }
 
-.shirt-details img{
+.properties-details img{
   width: 60%;
 }
 
-.shirt-details .details{
+.properties-details .details{
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
 }
 
-.shirt-details .details h3{
+.properties-details .details h3{
   font-size: 2rem;
 }
 
-.shirt-details .details .price{
+.properties-details .details .price{
   font-size: 1.5rem;
   font-weight: 600;
 }
 
-.shirt-details .details button{
+.properties-details .details button{
   border: none;
   cursor: pointer;
   padding: .6rem;
@@ -96,7 +143,7 @@
   transition: .4s;
 }
 
-.shirt-details .details button:hover{
+.properties-details .details button:hover{
   background-color: aquamarine;
   transition: .4s;
 }
