@@ -15,6 +15,7 @@ const LandlordLayout = () => {
             <NavLink to="reviews" className={({isActive}) => isActive ? "landlord-nav-link-active" : "landlord-nav-link"}>Review</NavLink>                
         </div>
 
+        {/* Get <LandlordLayout/> routes wrapper (all routes) from app.jsx  */}
         <Outlet/>
     </>
   )

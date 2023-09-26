@@ -2,7 +2,8 @@ import { useOutletContext } from "react-router-dom"
 import "../../index.css";
 
 const PropertyPhoto = () => {
-    const {propertyDetails} = useOutletContext()
+  // get props from <Outlet context={{propertyDetails}}/>
+  const {propertyDetails} = useOutletContext()
 
   return (
     <div className="property-details-property-photo">

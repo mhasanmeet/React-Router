@@ -45,7 +45,10 @@ const LandlordPropertiesDetails = () => {
         <NavLink to='pricing' className={ ({isActive}) => isActive ? "property-info-nav-active" : "property-info-nav-link" }>Pricing</NavLink>
       </nav>
 
-      {/* Get landlord-property-details route wrapper in here from app.jsx routes */}
+      {/* 1. <Outlet/> - Get landlord-property-details route wrapper routes (property-info, property-photo, property-price) in here from app.jsx routes */}
+      {/* 2. here we also use context api, which is a feature of react-router-6, here server api data from [propertyDetails] state send to 
+        landlord-property-details child routes to property-info, property-photo, property-price
+      */}
       <Outlet context={{propertyDetails}}/>
     </div>
   )

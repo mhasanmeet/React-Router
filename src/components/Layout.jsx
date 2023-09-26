@@ -7,6 +7,7 @@ const Layout = () => {
     <>
         <Header/>
           <main>
+            {/* Get <Layout/> routes wrapper (all routes) from app.jsx */}
             <Outlet/>
           </main>
         <Footer/>

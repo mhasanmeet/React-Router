@@ -13,11 +13,13 @@ Install React Router 6 `npm i react-router-dom`
 
 ## Nested Routes
 
-* `<Layout/>`
-* `<Outlet/>`
-* Relative routes
-* Index in Relative routes
-* end
-* relative path route - `..`
+* `<Layout/>` - a components which is the root of all routes and abstract the route paths
+* `<Outlet/>` - get all routes where a route wrapped others routes  
+* Relative routes, these are all relative routes path
+    - `..`
+    - `.`
+    - `path=""` 
+* `Index` property in Relative routes
+* `end` property in routes
 * relative absolute path property - `to=".." relative="path"`
 * outlet context api - `<Outlet context={}/>`

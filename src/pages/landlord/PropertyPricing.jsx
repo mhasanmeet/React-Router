@@ -1,7 +1,8 @@
 import { useOutletContext } from "react-router-dom"
 
 const PropertyPricing = () => {
-    const {propertyDetails} = useOutletContext()
+  // get props from <Outlet context={{propertyDetails}}/>
+  const {propertyDetails} = useOutletContext()
 
   return (
     <div>
