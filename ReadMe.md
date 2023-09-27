@@ -23,3 +23,14 @@ Install React Router 6 `npm i react-router-dom`
 * `end` property in routes
 * relative absolute path property - `to=".." relative="path"`
 * outlet context api - `<Outlet context={}/>`
+---
+* Till this steps commit code `63ae375`
+
+## Search Params and Links
+
+* Search/Query Parameters
+    - sorting, filtering, pagination
+    - In this stage of Search/Query Parameters we may need to use React state or 3rd party package like Redux
+    - Search/Query Parameters structured with `key/valued` paris in the URL which is started with `?` mark, like `/properties?type=apartment`
+    - Multiple query parameter separated by `&`, like `/properties?type=apartment&filterBy=price` 
+    - For use Search parameter react-router-dom have `useSearchParams` api

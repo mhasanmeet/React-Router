@@ -11,13 +11,17 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  padding: 1rem 0;
+  background: linear-gradient(30deg,#230b90, #fa5b05);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
 .logo{
   font-size: 3rem;
   font-weight: 600;
   text-decoration: none;
-  color: purple;
+  color: #e0fdff;
+  
 }
 
 .nav{
@@ -29,13 +33,13 @@
 
 .nav-link{
   text-decoration: none;
-  background-color: blanchedalmond;
+  background-color: rgb(255, 252, 247);
   padding: .4rem .6rem;
   color: #230b90;
 }
 
 .nav-link-active{
-  color: #f811ab;
+  color: #fa71cf;
   background-color: #230b90;
   padding: .4rem .6rem;
 }
@@ -92,6 +96,9 @@
 .properties h2{
   text-align: center;
   font-size: 2.2rem;
+  background: -webkit-linear-gradient(30deg, #0cddec, #fa5b05);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .properties .property-container{
@@ -287,4 +294,30 @@
 /* Landlord Properties Details */
 .property-details-property-photo img{
   width: 10rem;
+}
+
+/* Property Filter */
+.property-filters{
+  margin: 1rem 0;
+  display: flex;
+  gap: 1rem;
+  color: #230b90;
+  position: relative;
+}
+
+.property-filters .filter-item{
+  background-color: rgb(72, 255, 255);
+  padding: .3rem .5rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.filter-item-clear{
+  padding: .3rem .5rem;
+  text-decoration: underline;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1rem;
 }
