@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import {useParams} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 import "../../index.css";
+import arrow from "../../assets/arrow-left.svg";
 
 const PropertyDetails = () => {
     const params = useParams();
@@ -16,6 +17,13 @@ const PropertyDetails = () => {
 
   return (
     <div className="properties-details-container">
+
+        <NavLink to=".." relative="path" className="nav">
+            <img src={arrow} alt="" />
+            <p>
+            Back to all Properties
+            </p>
+        </NavLink>
 
         {property ? (
             <div className="properties-details">

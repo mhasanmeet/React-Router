@@ -53,7 +53,8 @@
 .landlord-properties,
 .landlord-properties-menu,
 .landlord-property-details,
-.property-details-loading{
+.property-details-loading, 
+.properties-details-container {
   margin-top: 3rem;
   width: 1200px;
   margin-inline: auto;
@@ -138,6 +139,14 @@
   width: 1200px;
   margin-inline: auto;
   margin-top: 2rem;
+}
+
+.properties-details-container .nav{
+  margin: 1rem 0;
+}
+
+.properties-details-container .nav img{
+width: 2rem;
 }
 
 .properties-details{
@@ -235,7 +244,7 @@ gap: 1.5rem;
   gap: 1rem;
 }
 
-.landlord-property-details .nav{
+.landlord-property-details, .nav{
   display: flex;
 }
 
