@@ -14,14 +14,15 @@ const LandlordProperties = () => {
   console.log(properties)
 
   const LandlordPropertiesEls = properties.map(property => (
-    <Link to={`/landlord/properties/${property.id}`} key={property.id}>
+    // <Link to={`/landlord/properties/${property.id}`} key={property.id}>
+    <Link to={property.id} key={property.id}>
       <div className="landlord-property-main">
         <img src={property.imageUrl} alt="" />
 
         <div className="property-info">
           <h3>{property.name}</h3>
           <p>$ {property.price}</p>
-          <p className={`property-type ${property.type} selected`}>{property.type}</p>
+          <p>{property.type}</p>
         </div>
       </div>
     </Link>

@@ -85,3 +85,22 @@ Install React Router 6 `npm i react-router-dom`
     <button onClick={() => handleFilterChange("type", null)} className="filter-item-clear">Clear filter</button>
     ```
 
+* Conditionally render the "Clear filter" button only if there's a `type` filter currently applied in the search params 
+
+```js
+{ typeFilter ? <button onClick={() => handleFilterChange("type", null)} className="filter-item-clear">Clear filter</button> : null }
+```
+
+* On just the filter buttons (not the Clear filter button), conditionally render the className "selected" if the typeFilter value equals the value that button sets it to. (We don't have a variable for that, so it'll be a hard-coded string).
+
+```js
+
+`${typeFilter === "home" ? "selected" : ""}`
+```
+
+so it should be like 
+
+```js
+<button onClick={() => handleFilterChange("type", "home")} className={`filter-item ${typeFilter === "home" ? "selected" : ""}`}>Home</button>
+```
+

@@ -180,9 +180,13 @@
 }
 
 /* Landlord Properties Menu */
+.landlord-properties-menu{
+display: flex;
+gap: 1.5rem;
+}
+
 .landlord-properties-menu > .landlord-nav-link-active, .landlord-nav-link{
   font-size: 1.2rem;
-  margin-left: 1.5rem;
   color: #230b90;
   background-color: bisque;
   padding: .6rem .8rem;
@@ -276,11 +280,12 @@
 /* Property Info Navbar */
 .property-info-nav{
   margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
 .property-info-nav > .property-info-nav-active, .property-info-nav-link{
   font-size: 1.2rem;
-  margin-left: 1.5rem;
   color: #230b90;
   background-color: bisque;
   padding: .3rem .5rem;
@@ -320,4 +325,9 @@
   background-color: transparent;
   cursor: pointer;
   font-size: 1rem;
+}
+
+.property-filters .selected{
+  background-color: #f811ab;
+  color: #c1fbff;
 }

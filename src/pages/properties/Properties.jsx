@@ -40,8 +40,9 @@ const Properties = () => {
 
     // Mapping properties after useEffect hook
     const propertyElements = displayPropertyType.map(property => (
-        <div key={property.id} className="property-title">
-            <Link to={`/properties/${property.id}`}>            
+        <div key={property.id} className="property-title"> 
+            {/* <Link to={`/properties/${property.id}`}> */}
+            <Link to={property.id}>  
                 <img src={property.imageUrl} className="property-img"/>
                 
                 <div className="property-info">
@@ -110,9 +111,9 @@ const Properties = () => {
                 <Link to={genNewSearchParamString("type", null)}>Clear filter</Link> */}
 
                 {/* By URLSearchParams vanilla JS we api with Button */}
-                <button onClick={() => handleFilterChange("type", "home")} className="filter-item">Home</button>
-                <button onClick={() => handleFilterChange("type", "apartment")} className="filter-item">Apartment</button>
-                <button onClick={() => handleFilterChange("type", null)} className="filter-item-clear">Clear filter</button>
+                <button onClick={() => handleFilterChange("type", "home")} className={`filter-item ${typeFilter === "home" ? "selected" : ""}`}>Home</button>
+                <button onClick={() => handleFilterChange("type", "apartment")} className={`filter-item ${typeFilter === "apartment" ? "selected" : ""}`}>Apartment</button>
+                { typeFilter ? <button onClick={() => handleFilterChange("type", null)} className="filter-item-clear">Clear filter</button> : null }
 
             </div>
 
