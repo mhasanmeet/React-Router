@@ -52,7 +52,35 @@ const Properties = () => {
             </Link>
         </div>
     ))
+    
+    // URLSearchParams vanilla JS we api, explain in ReadMe doc
+    /* 1. with Link
+    function genNewSearchParamString (key, value){
+        let sp = new URLSearchParams(searchParams)
 
+        // check if there is value or null
+        if (value === null){
+            sp.delete(key)
+        }else{
+        sp.set(key, value) 
+        }
+
+        // and return the value with hardcoded "?" mark with toString() method
+        return `?${sp.toString()}`
+    }
+    */
+    
+    //2. with Button
+    function handleFilterChange(key, value) {
+        setSearchParams(prevParams => {
+          if (value === null) {
+            prevParams.delete(key)
+          } else {
+            prevParams.set(key, value)
+          }
+          return prevParams
+        })
+    }
 
     return (
         <div className="properties">
@@ -72,10 +100,20 @@ const Properties = () => {
                 */}
 
                 {/* By setSearchParams state Object initialization, like key and values. for clear filter we use empty Object */}
-                <button onClick={() => setSearchParams({type: "home"})} className="filter-item">Home</button>
+                {/* <button onClick={() => setSearchParams({type: "home"})} className="filter-item">Home</button>
                 <button onClick={() => setSearchParams({type: "apartment"})} className="filter-item">Apartment</button>
-                <button onClick={() => setSearchParams({})} className="filter-item-clear">Clear Filters</button> 
-               
+                <button onClick={() => setSearchParams({})} className="filter-item-clear">Clear Filters</button>  */}
+
+                {/* By URLSearchParams vanilla JS we api with Link */}
+                {/* <Link to={genNewSearchParamString("type", "home")}>Home</Link>
+                <Link to={genNewSearchParamString("type", "apartment")}>Apartment</Link>
+                <Link to={genNewSearchParamString("type", null)}>Clear filter</Link> */}
+
+                {/* By URLSearchParams vanilla JS we api with Button */}
+                <button onClick={() => handleFilterChange("type", "home")} className="filter-item">Home</button>
+                <button onClick={() => handleFilterChange("type", "apartment")} className="filter-item">Apartment</button>
+                <button onClick={() => handleFilterChange("type", null)} className="filter-item-clear">Clear filter</button>
+
             </div>
 
             <div className="property-container">
