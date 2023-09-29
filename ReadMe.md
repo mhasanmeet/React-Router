@@ -143,3 +143,24 @@ const search = location.state?.search || "";
 </NavLink>
 ```
 
+3. Back to property with property type specific
+
+- In Properties page, we also get `type: typeFilter` state along with `search`
+
+```js
+<Link to={property.id} state={{
+    search: `?${searchParams.toString()}`,
+    type: typeFilter 
+}}>  {/* And we add a filter state and type state in here */}
+```
+- Then in propertyDetails Page
+
+```js
+// If there a filter state have, then "back to that properties" or "all properties"
+    const propertyType = location?.state.type || "all"
+
+// And in component render
+<p>
+    Back to {propertyType} properties
+</p>
+```

@@ -25,6 +25,9 @@ const PropertyDetails = () => {
     */ 
     const search = location.state?.search || "";
 
+    // If there a filter state have, then "back to that properties" or "all properties"
+    const propertyType = location?.state.type || "all"
+
   return (
     <div className="properties-details-container">
 
@@ -32,7 +35,7 @@ const PropertyDetails = () => {
         <NavLink to={`..${search}`} relative="path" className="nav">
             <img src={arrow} alt="" />
             <p>
-            Back to all Properties
+            Back to {propertyType} properties
             </p>
         </NavLink>
 

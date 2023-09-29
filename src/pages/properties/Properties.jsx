@@ -42,7 +42,11 @@ const Properties = () => {
     const propertyElements = displayPropertyType.map(property => (
         <div key={property.id} className="property-title"> 
             {/* <Link to={`/properties/${property.id}`}> */}
-            <Link to={property.id} state={{search: `?${searchParams.toString()}`}}>  {/* And we add a filter state in here */}
+            <Link to={property.id} state={{
+                    search: `?${searchParams.toString()}`,
+                    type: typeFilter 
+                }}>  {/* And we add a filter state and type state in here */}
+
                 <img src={property.imageUrl} className="property-img"/>
                 
                 <div className="property-info">
