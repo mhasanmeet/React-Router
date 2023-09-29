@@ -13,7 +13,7 @@ const Properties = () => {
     // console.log(typeFilter)
 
 
-    // useEffect hook for get properties from api
+    // useEffect hook for get properties from server api and set data into setProperties state
     useEffect(() => {
         fetch("/api/properties")
             .then(res => res.json())
@@ -23,7 +23,7 @@ const Properties = () => {
 
 
     /* 
-    Hole story: Here We apply conditional search by "filter" method. When we get data by "fetch" and put to 
+    Whole story: Here We apply conditional search by "filter" method. When we get data by "fetch" and put to 
     useEffect state to "properties". Then we use "react-router" "useParamSearch" api to get "type" attribute
     from remote api data. 
 
@@ -42,7 +42,7 @@ const Properties = () => {
     const propertyElements = displayPropertyType.map(property => (
         <div key={property.id} className="property-title"> 
             {/* <Link to={`/properties/${property.id}`}> */}
-            <Link to={property.id}>  
+            <Link to={property.id} state={{search: `?${searchParams.toString()}`}}>  {/* And we add a filter state in here */}
                 <img src={property.imageUrl} className="property-img"/>
                 
                 <div className="property-info">
@@ -54,7 +54,7 @@ const Properties = () => {
         </div>
     ))
     
-    // URLSearchParams vanilla JS we api, explain in ReadMe doc
+    // use with "URLSearchParams" vanilla JS web api, for property query/search in url (explain in ReadMe doc)
     /* 1. with Link
     function genNewSearchParamString (key, value){
         let sp = new URLSearchParams(searchParams)
@@ -87,6 +87,7 @@ const Properties = () => {
         <div className="properties">
             <h2 className="">Explore our Properties!</h2>
             
+            {/* Property filter */}
             <div className="property-filters">
                 {/* Most simple and straightforward way, for clear filter we use relative path */}
                 {/* <Link to="?type=home" className="filter-item">Home</Link>
@@ -116,7 +117,8 @@ const Properties = () => {
                 { typeFilter ? <button onClick={() => handleFilterChange("type", null)} className="filter-item-clear">Clear filter</button> : null }
 
             </div>
-
+            
+            {/* put {propertyElements} JS interpolate code in here */}
             <div className="property-container">
                 {propertyElements}
             </div>

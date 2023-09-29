@@ -104,3 +104,42 @@ so it should be like
 <button onClick={() => handleFilterChange("type", "home")} className={`filter-item ${typeFilter === "home" ? "selected" : ""}`}>Home</button>
 ```
 
+## Link state 
+
+if we filter the properties, then go into a property and then back into properties, we need a filter Link state. Here is how we apply this, like this `state={{search: searchParams.toString()}}`.
+
+1. First in properties page, we put a state in here
+```js
+
+    <Link to={property.id} state={{search: `?${searchParams.toString()}`}}>  
+        <img src={property.imageUrl} className="property-img"/>
+        
+        <div className="property-info">
+            <h3>{property.name}</h3>
+            <p>${property.price}</p>
+            <p className={`property-type ${property.type} selected`}>{property.type}</p>
+        </div>
+    </Link>
+```
+
+2. Then in propertyDetails page, we use react-router `useLocation` api
+
+```js
+// We have to import useLocation();
+import {..., useLocation} from "react-router-dom";
+
+const location = useLocation();
+console.log(location); //{pathname: '/properties/3', search: '', hash: '', state: null, key: 'exqzsfez'}
+
+// condition for if there is a filter state from "property" page then keep it or go back blank if there is no state 
+const search = location.state?.search || "";
+
+// <NavLink to=".." relative="path" className="nav">
+<NavLink to={`..${search}`} relative="path" className="nav">
+    <img src={arrow} alt="" />
+    <p>
+    Back to all Properties
+    </p>
+</NavLink>
+```
+
