@@ -15,6 +15,7 @@ import LandlordPropertiesDetails from './pages/landlord/LandLordPropertiesDetail
 import PropertyInfo from './pages/landlord/PropertyInfo';
 import PropertyPhoto from './pages/landlord/PropertyPhoto';
 import PropertyPricing from './pages/landlord/PropertyPricing';
+import NotFound from './pages/NotFound';
 
 function App() {
 
@@ -51,6 +52,9 @@ function App() {
               <Route path='pricing' element={<PropertyPricing/>}/>
             </Route>
           </Route>
+
+          {/* Not found page, 404 page, under the main Layout */}
+          <Route path='*' element={<NotFound/>}/>
         </Route>   
       </Routes>   
     </BrowserRouter>

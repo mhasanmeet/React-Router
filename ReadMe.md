@@ -164,3 +164,6 @@ const search = location.state?.search || "";
     Back to {propertyType} properties
 </p>
 ```
+
+## 404 Page
+
