@@ -4,7 +4,6 @@ import About from './pages/About';
 import Properties from './pages/properties/Properties';
 import PropertyDetails from './pages/properties/PropertyDetails';
 import "./index.css";
-import "./server";
 import Layout from './components/Layout';
 import Dashboard from './pages/landlord/Dashboard';
 import Income from './pages/landlord/Income';
@@ -16,6 +15,7 @@ import PropertyInfo from './pages/landlord/PropertyInfo';
 import PropertyPhoto from './pages/landlord/PropertyPhoto';
 import PropertyPricing from './pages/landlord/PropertyPricing';
 import NotFound from './pages/NotFound';
+import "./server";
 
 function App() {
 

@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import "../../index.css";
 import { Link, useSearchParams } from "react-router-dom";
+import { getProperties } from "../../api";
 
 const Properties = () => {
     // get search parameter api and use as state
     const [searchParams, setSearchParams] = useSearchParams()
     const [properties, setProperties] = useState([])
+    // fetch data loading state
+    const [loading, setLoading] = useState(false);
+    // handle server error 
+    const [error, setError] = useState(null)
 
 
     // this will give use URL type search ability like - /properties?type=anything - by useSearchParam api
@@ -15,16 +20,37 @@ const Properties = () => {
 
     // useEffect hook for get properties from server api and set data into setProperties state
     useEffect(() => {
-        fetch("/api/properties")
-            .then(res => res.json())
-            .then(data => setProperties(data.properties))
+        // fetch("/api/properties")
+        //     .then(res => res.json())
+        //     .then(data => setProperties(data.properties))
+
+        // instead of direct fetch, we get data from api.js with async way
+        async function loadProperties(){
+            // if data is fetch from api server and takes time, then show loading
+            setLoading(true)
+
+            // try, catch error if there is any server error
+            try{
+                const data = await getProperties()
+                setProperties(data)
+            } catch(err){
+                //if there is any server error show error
+                setError(err)
+            }finally{
+                // if fetch loading data available then stop show loading
+                setLoading(false)
+            }
+        }
+
+        loadProperties()
+
     }, [])
     // console.log(properties)
 
 
     /* 
     Whole story: Here We apply conditional search by "filter" method. When we get data by "fetch" and put to 
-    useEffect state to "properties". Then we use "react-router" "useParamSearch" api to get "type" attribute
+    useEffect hook to "properties". Then we use "react-router" "useParamSearch" api to get "type" attribute
     from remote api data. 
 
     Then in here typeFilter means, if we "search" like "/property?type=home" in our browser then 
@@ -33,9 +59,9 @@ const Properties = () => {
     Then we take displayPropertyType and get our preferred things like {property.name}
     */
     let displayPropertyType = typeFilter 
-        ? properties.filter(property => property.type.toLowerCase() === typeFilter) 
+        ? properties.filter(property => property.type === typeFilter) 
         : properties;
-    // console.log(displayPropertyType)
+    console.log(displayPropertyType)
 
 
     // Mapping properties after useEffect hook
@@ -52,7 +78,7 @@ const Properties = () => {
                 <div className="property-info">
                     <h3>{property.name}</h3>
                     <p>${property.price}</p>
-                    <p className={`property-type ${property.type} selected`}>{property.type}</p>
+                    <p>{property.type}</p>
                 </div>
             </Link>
         </div>
@@ -85,6 +111,16 @@ const Properties = () => {
           }
           return prevParams
         })
+    }
+
+    // if data is fetch from api server and takes time, then show loading
+    if(loading){
+        return <h3 className="loading">Loading...</h3>
+    }
+
+    //from error state hook, if there is any server error show this error
+    if (error){
+        return <h3 className="error">Server Error!</h3>
     }
 
     return (

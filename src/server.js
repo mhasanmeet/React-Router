@@ -1,4 +1,4 @@
-import { createServer, Model} from "miragejs";
+import { createServer, Model, Response} from "miragejs";
 
 createServer({
     models: {
@@ -44,6 +44,7 @@ createServer({
 
         // Show all property
         this.get('/properties', (schema) =>{
+            //return new Response(400, {}, {error: "Error fetching data"})
             return schema.properties.all();
         })
 

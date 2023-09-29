@@ -167,3 +167,146 @@ const search = location.state?.search || "";
 
 ## 404 Page
 
+1. create a router for `not found page` at app.jsx under the Layout
+
+```js
+
+{/* Not found page, 404 page, under the main Layout */}
+<Route path='*' element={<NotFound/>}/>
+```
+
+2. And create a jsx component for `<NotFound/>`
+
+
+## Handle Server error
+
+Handle server error (like 400) and show it to the website
+
+1. First instead of get our server api data direct into component, we can make a separate JS file to get it with async way
+
+```js 
+
+// api.js 
+
+export async function getProperties(){
+    const res = await fetch("/api/properties")
+    const data = await res.json()
+    return data.properties
+} 
+```
+
+2. And then properties page, instead of direct fetch, we get data from api.js with async way
+
+```js
+
+useEffect(() => {
+    // instead of direct fetch, we get data from api.js with async way
+    async function loadProperties(){
+        const data = await getProperties()
+        setProperties(data)
+    }
+
+    loadProperties()
+
+}, [])
+```
+
+3. Then in Properties page, if there is any fetch request, make loading state and use it ⭐
+
+    - We create a loading state
+
+    ```js
+    
+    const [loading, setLoading] = useState(false)
+    ``` 
+
+    - Then in "useEffect" hook, before fetch request we make true in `setLoading` and false after fetch request
+    ```js
+    
+    useEffect(() => {
+        async function loadProperties(){
+            setLoading(true)
+            const data = await getProperties()
+            setProperties(data)
+            setLoading(false)
+        }
+
+        loadProperties()
+
+    }, [])
+    ```
+
+    - And we handle user interface if there is any loading occurred
+
+    ```js
+        if (loading) {
+            return <h1>Loading...</h1>
+        }   
+    ```
+
+4. Show error message
+
+    - in api.js 
+
+    ```js
+    
+    export async function getProperties(){
+        const res = await fetch("/api/properties")
+
+        //if the server is not ok (show 400, 500 error) then show message
+        if(!res.ok){
+            throw{
+                message: "Failed to fetch data",
+                statusText: res.statusText,
+                status: res.status
+            }
+        }
+
+        const data = await res.json()
+        return data.properties
+    } 
+    ```
+
+    - Then in properties page, create a error state, set error in useEffect hook, and declare error message
+
+    ```js
+    
+    // handle server error 
+    const [error, setError] = useState(null)
+    ```
+
+    then in useEffect hook, try and catch error
+
+    ```js
+    
+    useEffect(() => {
+        async function loadProperties(){
+            setLoading(true)
+
+            // try, catch error if there is any server error
+            try{
+                const data = await getProperties()
+                setProperties(data)
+            } catch(err){
+                // set state error
+                setError(err)
+            }finally{
+                setLoading(false)
+            }
+        }
+
+        loadProperties()
+
+    }, [])
+    ```
+    and then declare error
+
+    ```js
+
+    // from error state hook
+    if (error){
+        return <h1>There was an error: {error.message}</h1>
+    }
+    ```
+
+
