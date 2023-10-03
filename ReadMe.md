@@ -1,4 +1,5 @@
 ## React router 6 
+React Router is a client side router.
 
 Install React Router 6 `npm i react-router-dom`
 
@@ -178,7 +179,7 @@ const search = location.state?.search || "";
 2. And create a jsx component for `<NotFound/>`
 
 
-## Handle Server error
+## Handle Server error and Loader manually
 
 Handle server error (like 400) and show it to the website
 
@@ -309,4 +310,66 @@ useEffect(() => {
     }
     ```
 
+## Handle Loaders and Errors by React-router
 
+### Loader page High level overview
+1. Export a `loader` function from the component page where data fetching and loading exist
+2. Pass a `loader` prop to the Route that render that page and pass in the `loader` function
+3. Use the `useLoaderData` hook in the component to get the data 
+
+### loader page setup steps
+
+1. Restructure root route component
+
+In 6.4 version, react-router introduce `data API` where we can pick a apis for handle fetch type data. As we already handle our route with `BrowserRouter`, we need to restructure for use Data apis. 
+
+our current structure is ![BR](/public/img/browserRouter.png)
+
+So for new structure, we need to have a router function in where we get `createBrowserRouter` and then inside of that we also need `createRoutesFromElements`, and there we put all of our routes. and this will be pass by props into main function. 
+
+The new full structure is here. ![CBR](/public/img/createBrowserRouter.png)
+
+2. Export a `loader` function from the component page where data fetching and loading exist. Like for properties page
+
+```js
+
+// Loader
+export function loader(){
+    return "Properties data goes in here"
+}
+```
+
+3. And then in main route `app.jsx` file, get that loader function as props
+
+```js
+import Properties, {loader as propertiesLoader} from './pages/properties/Properties';
+
+<Route path='properties' element={<Properties />} loader={propertiesLoader}/>
+```
+
+4. And then in main component we can get the loader data 
+
+```js
+
+const data = useLoaderData();
+console.log(data) 
+```
+
+5. And now in loader function we can get properties which is come from `api.js`
+
+```js
+
+// Loader
+export function loader(){
+    return getProperties()
+}
+```
+By this we can get rid of manual loader. Look at our current properties page where we handle loader manually bby `useEffect` hook
+
+![manualLoader](/public/img/properties-page-with-manul-loader.png)
+
+And after the react-router loader function now we can get rid of `setProperties`, `loader` states, `useEffect` hooks and loader conditional html content
+
+Here is the code snapshot after we get rid of manual loader 
+
+![reactLoader](/public/img/properties-page-by-router-loader.png)
