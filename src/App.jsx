@@ -20,6 +20,7 @@ import PropertyPhoto from './pages/landlord/PropertyPhoto';
 import PropertyPricing from './pages/landlord/PropertyPricing';
 import NotFound from './pages/NotFound';
 import "./server";
+import Error from './components/Error';
 
 
 // Data Api function for handle loader
@@ -30,7 +31,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     {/* <NavLink to="/about"></NavLink> */}
     <Route path='about' element={<About />}/>
     {/* <NavLink to="/properties"></NavLink> */}
-    <Route path='properties' element={<Properties />} loader={propertiesLoader}/>
+    <Route path='properties' element={<Properties />} errorElement={<Error/>} loader={propertiesLoader}/>
     {/* <NavLink to="/properties/:id"></NavLink> */}
     <Route path='properties/:id' element={<PropertyDetails/>}/>
 

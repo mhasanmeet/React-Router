@@ -373,3 +373,40 @@ And after the react-router loader function now we can get rid of `setProperties`
 Here is the code snapshot after we get rid of manual loader 
 
 ![reactLoader](/public/img/properties-page-by-router-loader.png)
+
+
+### Handle error
+
+1. Create a error component in `components`
+2. Add `errorElement` in route file.
+
+```js
+<Route path='properties' element={<Properties />} errorElement={<Error/>} loader={propertiesLoader}/>
+```
+3. Now if there is any server related error occurred then the `Error` component will be returned. But this error message or component is not dynamic. we can make it dynamic by getting `useRouteError` api
+
+```js
+import {useRouteError} from "react-router-dom"
+
+const Error = () => {
+  const error = useRouteError();
+
+  return (
+    <div>
+      <h1>{error.status}!</h1>
+      <h2>{error.message}</h2>
+      <h3>{error.statusText}</h3>
+    </div>
+  )
+}
+
+export default Error
+```
+4. We can handle multiple page error by put `errorElement` to top Route
+
+```js
+
+<Route path='/' element={<Layout/>} errorElement={<Error/>}>
+// Others Route here
+</Route> 
+```
