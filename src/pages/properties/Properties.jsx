@@ -1,51 +1,24 @@
 import { useEffect, useState } from "react";
 import "../../index.css";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLoaderData, useSearchParams } from "react-router-dom";
 import { getProperties } from "../../api";
 
-const Properties = () => {
+// Loader
+export function loader(){
+    return getProperties()
+}
+
+export default function Properties(){
     // get search parameter api and use as state
     const [searchParams, setSearchParams] = useSearchParams()
-    const [properties, setProperties] = useState([])
-    // fetch data loading state
-    const [loading, setLoading] = useState(false);
-    // handle server error 
     const [error, setError] = useState(null)
+    // get react-router loader api 
+    const properties = useLoaderData();
 
 
     // this will give use URL type search ability like - /properties?type=anything - by useSearchParam api
     const typeFilter = searchParams.get('type')
     // console.log(typeFilter)
-
-
-    // useEffect hook for get properties from server api and set data into setProperties state
-    useEffect(() => {
-        // fetch("/api/properties")
-        //     .then(res => res.json())
-        //     .then(data => setProperties(data.properties))
-
-        // instead of direct fetch, we get data from api.js with async way
-        async function loadProperties(){
-            // if data is fetch from api server and takes time, then show loading
-            setLoading(true)
-
-            // try, catch error if there is any server error
-            try{
-                const data = await getProperties()
-                setProperties(data)
-            } catch(err){
-                //if there is any server error show error
-                setError(err)
-            }finally{
-                // if fetch loading data available then stop show loading
-                setLoading(false)
-            }
-        }
-
-        loadProperties()
-
-    }, [])
-    // console.log(properties)
 
 
     /* 
@@ -62,6 +35,7 @@ const Properties = () => {
         ? properties.filter(property => property.type === typeFilter) 
         : properties;
     console.log(displayPropertyType)
+
 
 
     // Mapping properties after useEffect hook
@@ -84,6 +58,8 @@ const Properties = () => {
         </div>
     ))
     
+
+
     // use with "URLSearchParams" vanilla JS web api, for property query/search in url (explain in ReadMe doc)
     /* 1. with Link
     function genNewSearchParamString (key, value){
@@ -113,15 +89,13 @@ const Properties = () => {
         })
     }
 
-    // if data is fetch from api server and takes time, then show loading
-    if(loading){
-        return <h3 className="loading">Loading...</h3>
-    }
 
     //from error state hook, if there is any server error show this error
     if (error){
         return <h3 className="error">Server Error!</h3>
     }
+
+
 
     return (
         <div className="properties">
@@ -165,5 +139,3 @@ const Properties = () => {
         </div>
     )
 }
-
-export default Properties
