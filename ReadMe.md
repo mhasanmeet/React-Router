@@ -1,4 +1,4 @@
-## React Router 6 - With Protected Routes
+## React Router 6 - With Protected Routes (In Landlord Sections)
 
 ## **Protected Routes:** preventing renders 
 
@@ -24,3 +24,38 @@ Current downside: need to happen in every protected route's loader. (for this we
     }}
 />
 ```
+
+2. As we previously did in `properties` page, we also add loader promise in `propertyDetails` page. Bute here is a difference, here we get unique property with id params, for that we need to change in api code 
+
+    ```js
+
+    // if there is any id params exist then return properties with with otherwise return all properties
+        const url = id ? `/api/properties/${id}` : "/api/properties"
+        const res = await fetch(url)
+    ```
+
+    * Add a promise function in `propertyDetails` page
+    ```js
+    import { getProperties } from "../../api"; 
+
+    // loader promise function
+    export function loader({params}){
+        return getProperties(params.id)
+    }
+    ```
+    * Add loader in routes at app.jsx 
+    ```js
+    import PropertyDetails, {loader as propertyDetailsLoader} from './pages/properties/PropertyDetails';
+    
+    <Route 
+      path='properties/:id' 
+      element={<PropertyDetails/>}
+      loader={propertyDetailsLoader}
+    />
+    ```
+    * Then with react-router `useLoaderData()`, we get the loader into `propertyDetailsPage` page main function, and by this `useLoaderData` we get property details with params, and we do not need useState and useEffect hook, and therefore we do not need to render reactive code in conditionally
+    ```js
+    
+    // get properties by loader
+    const property = useLoaderData()
+    ```

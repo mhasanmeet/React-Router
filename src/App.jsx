@@ -6,7 +6,7 @@ import {
 import Home from './pages/Home';
 import About from './pages/About';
 import Properties, {loader as propertiesLoader} from './pages/properties/Properties';
-import PropertyDetails from './pages/properties/PropertyDetails';
+import PropertyDetails, {loader as propertyDetailsLoader} from './pages/properties/PropertyDetails';
 import "./index.css";
 import Layout from './components/Layout';
 import Dashboard from './pages/landlord/Dashboard';
@@ -31,9 +31,18 @@ const router = createBrowserRouter(createRoutesFromElements(
     {/* <NavLink to="/about"></NavLink> */}
     <Route path='about' element={<About />}/>
     {/* <NavLink to="/properties"></NavLink> */}
-    <Route path='properties' element={<Properties />} errorElement={<Error/>} loader={propertiesLoader}/>
+    <Route 
+      path='properties' 
+      element={<Properties />} 
+      errorElement={<Error/>} 
+      loader={propertiesLoader}
+    />
     {/* <NavLink to="/properties/:id"></NavLink> */}
-    <Route path='properties/:id' element={<PropertyDetails/>}/>
+    <Route 
+      path='properties/:id' 
+      element={<PropertyDetails/>}
+      loader={propertyDetailsLoader}
+    />
 
     <Route path='/landlord' element={<LandlordLayout/>}>
       {/* <NavLink to="/landlord"></NavLink> */}

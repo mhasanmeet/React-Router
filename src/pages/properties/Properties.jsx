@@ -14,7 +14,7 @@ export default function Properties(){
     // const [error, setError] = useState(null)
     const error = null;
 
-    // get react-router loader api 
+    // get properties by react-router loader api 
     const properties = useLoaderData();
 
 

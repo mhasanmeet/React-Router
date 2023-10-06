@@ -1,23 +1,21 @@
-import { useEffect, useState } from "react";
-import {NavLink, useLocation, useParams} from "react-router-dom";
+// import { useEffect, useState } from "react";
+import {NavLink, useLoaderData, useLocation} from "react-router-dom";
 import "../../index.css";
 import arrow from "../../assets/arrow-left.svg";
+import { getProperties } from "../../api"; 
+
+// loader promise function
+export function loader({params}){
+    return getProperties(params.id)
+}
 
 const PropertyDetails = () => {
-    const params = useParams();
-    console.log(params)
+    // get properties by loader
+    const property = useLoaderData()
 
     const location = useLocation();
-    console.log(location);
-    
-    const [property, setProperty] = useState(null)
+    // console.log(location);
 
-    // get data from api server by params id, and put data into setProperty state
-    useEffect(() => {
-        fetch(`/api/properties/${params.id}`)
-            .then(res => res.json())
-            .then(data => setProperty(data.properties))
-    }, [params.id])
 
     /*
     condition for if there is a filter state (this state come from browser) from "property" 
@@ -26,7 +24,7 @@ const PropertyDetails = () => {
     const search = location.state?.search || "";
 
     // If there a filter state have, then "back to that properties" or "all properties"
-    const propertyType = location?.state.type || "all"
+    const propertyType = location.state?.type || "all"
 
   return (
     <div className="properties-details-container">
@@ -38,21 +36,19 @@ const PropertyDetails = () => {
             Back to {propertyType} properties
             </p>
         </NavLink>
+        
+        <div className="properties-details">
+            <img src={property.imageUrl} alt=""/>
 
-        {/* if property available then get property data otherwise show loading */}
-        {property ? (
-            <div className="properties-details">
-                <img src={property.imageUrl} alt=""/>
-
-                <div className="details">
-                    <h3>{property.name}</h3>
-                    <p className="price">$ {property.price}</p>
-                    <p>{property.type}</p>
-                    <p>{property.description}</p>
-                    <button>Buy Now!</button>
-                </div>
+            <div className="details">
+                <h3>{property.name}</h3>
+                <p className="price">$ {property.price}</p>
+                <p>{property.type}</p>
+                <p>{property.description}</p>
+                <button>Buy Now!</button>
             </div>
-        ) : <h2>Loading...</h2>}
+        </div>
+        
     </div>
   )
 }
