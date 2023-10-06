@@ -1,21 +1,16 @@
-import { useEffect, useState } from "react"
-import { NavLink, Outlet, useParams } from "react-router-dom"
+// import { useEffect, useState } from "react"
+import { NavLink, Outlet, useLoaderData } from "react-router-dom"
 import arrow from "../../assets/arrow-left.svg";
 import "../../index.css";
+import { getLandlordProperties } from "../../api";
+
+// Get landlord properties per id and return promise
+export function loader({params}){
+  return getLandlordProperties(params.id)
+}
 
 const LandlordPropertiesDetails = () => {
-  const params =  useParams();
-  const [propertyDetails, setPropertyDetails] = useState(null)
-
-  useEffect(() =>{
-    fetch(`/api/landlord/properties/${params.id}`)
-      .then(res => res.json())
-      .then(data => setPropertyDetails(data.properties))
-  }, [params.id])
-
-  if(!propertyDetails){
-    return <h2 className="property-details-loading">Loading...</h2>
-  }
+  const propertyDetails = useLoaderData();
 
   return (
     <div className="landlord-property-details">

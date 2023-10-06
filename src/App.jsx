@@ -13,8 +13,8 @@ import Dashboard from './pages/landlord/Dashboard';
 import Income from './pages/landlord/Income';
 import Reviews from './pages/landlord/Reviews';
 import LandlordLayout from './components/LandlordLayout';
-import LandlordProperties from './pages/landlord/LandlordProperties';
-import LandlordPropertiesDetails from './pages/landlord/LandLordPropertiesDetails';
+import LandlordProperties, {loader as landlordProperties} from './pages/landlord/LandlordProperties';
+import LandlordPropertiesDetails, {loader as landlordPropertiesDetails} from './pages/landlord/LandLordPropertiesDetails';
 import PropertyInfo from './pages/landlord/PropertyInfo';
 import PropertyPhoto from './pages/landlord/PropertyPhoto';
 import PropertyPricing from './pages/landlord/PropertyPricing';
@@ -73,18 +73,14 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route 
         path='properties' 
         element={<LandlordProperties/>}
-        loader = {async () => {
-          return null
-        }}
+        loader = {landlordProperties}
       />
       {/* <NavLink to="/landlord/properties/:id"></NavLink> */}
       
       <Route 
         path='properties/:id' 
         element={<LandlordPropertiesDetails/>}
-        loader = {async () => {
-          return null
-        }}
+        loader = {landlordPropertiesDetails}
       >
         {/* <NavLink to="/landlord/properties/:id/info"></NavLink>, it is default route that's why we eliminate info route, rather use index */}
         <Route 

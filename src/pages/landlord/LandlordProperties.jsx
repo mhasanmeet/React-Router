@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react"
+// import { useEffect, useState } from "react"
 import "../../index.css";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import { getLandlordProperties } from "../../api";
+
+// Get landlord properties and return promise
+export function loader(){
+  return getLandlordProperties();
+}
 
 const LandlordProperties = () => {
-  const [properties, setProperties] = useState([])
-
-  useEffect(() => {
-      fetch("/api/landlord/properties")
-          .then(res => res.json())
-          .then(data => setProperties(data.properties))
-  }, [])
-
+  const properties = useLoaderData();
   console.log(properties)
+
 
   const LandlordPropertiesEls = properties.map(property => (
     // <Link to={`/landlord/properties/${property.id}`} key={property.id}>
@@ -32,18 +32,9 @@ const LandlordProperties = () => {
     <div className="landlord-properties">
         <h2>My Properties</h2>
         
-        {
-          properties.length > 0 ? 
-          (
-            <section className="landlord-property-container">
-              {LandlordPropertiesEls}
-            </section>
-          ) : 
-          (
-            <h2>Loading...</h2>
-          )
-        }
-
+        <section className="landlord-property-container">
+          {LandlordPropertiesEls}
+        </section>
     </div>
   )
 }

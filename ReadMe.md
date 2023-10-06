@@ -59,3 +59,4 @@ Current downside: need to happen in every protected route's loader. (for this we
     // get properties by loader
     const property = useLoaderData()
     ```
+3. We also get `loader` promise and `useLoaderData()` api for `landlordProperties` and `landlordPropertiesDetails` 
