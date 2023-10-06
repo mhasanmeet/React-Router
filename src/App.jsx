@@ -37,22 +37,70 @@ const router = createBrowserRouter(createRoutesFromElements(
 
     <Route path='/landlord' element={<LandlordLayout/>}>
       {/* <NavLink to="/landlord"></NavLink> */}
-      <Route index element={<Dashboard/>}/>
+      <Route 
+        index 
+        element={<Dashboard/>}
+        loader = {async () => {
+          return null
+        }}
+      />
       {/* <NavLink to="/landlord/income"></NavLink> */}
-      <Route path='income' element={<Income/>}/>
+      <Route 
+        path='income' 
+        element={<Income/>}
+        loader = {async () => {
+          return null
+        }}
+      />
       {/* <NavLink to="/landlord/reviews"></NavLink> */}
-      <Route path='reviews' element={<Reviews/>}/>
+      <Route 
+        path='reviews' 
+        element={<Reviews/>}
+        loader = {async () => {
+          return null
+        }}
+      />
       {/* <NavLink to="/landlord/properties"></NavLink> */}
-      <Route path='properties' element={<LandlordProperties/>}/>
+      <Route 
+        path='properties' 
+        element={<LandlordProperties/>}
+        loader = {async () => {
+          return null
+        }}
+      />
       {/* <NavLink to="/landlord/properties/:id"></NavLink> */}
       
-      <Route path='properties/:id' element={<LandlordPropertiesDetails/>}>
+      <Route 
+        path='properties/:id' 
+        element={<LandlordPropertiesDetails/>}
+        loader = {async () => {
+          return null
+        }}
+      >
         {/* <NavLink to="/landlord/properties/:id/info"></NavLink>, it is default route that's why we eliminate info route, rather use index */}
-        <Route index element={<PropertyInfo/>}/>
+        <Route 
+          index 
+          element={<PropertyInfo/>}
+          loader = {async () => {
+            return null
+          }}
+        />
         {/* <NavLink to="/landlord/properties/:id/photo"></NavLink> */}
-        <Route path='photo' element={<PropertyPhoto/>}/>
+        <Route 
+          path='photo' 
+          element={<PropertyPhoto/>}
+          loader = {async () => {
+            return null
+          }}
+        />
         {/* <NavLink to="/landlord/properties/:id/pricing"></NavLink> */}
-        <Route path='pricing' element={<PropertyPricing/>}/>
+        <Route 
+          path='pricing' 
+          element={<PropertyPricing/>}
+          loader = {async () => {
+            return null
+          }}
+        />
       </Route>
     </Route>
 

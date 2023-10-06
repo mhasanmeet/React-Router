@@ -44,8 +44,8 @@ createServer({
 
         // Show all property
         this.get('/properties', (schema) =>{
-            return new Response(400, {}, {error: "Error fetching data"})
-            // return schema.properties.all();
+            // return new Response(400, {}, {error: "Error fetching data"})
+            return schema.properties.all();
         })
 
         // Show single property

@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
 import "../../index.css";
 import { Link, useLoaderData, useSearchParams } from "react-router-dom";
 import { getProperties } from "../../api";
+// import { useState } from "react";
 
 // Loader
 export function loader(){
@@ -11,14 +11,16 @@ export function loader(){
 export default function Properties(){
     // get search parameter api and use as state
     const [searchParams, setSearchParams] = useSearchParams()
-    const [error, setError] = useState(null)
+    // const [error, setError] = useState(null)
+    const error = null;
+
     // get react-router loader api 
     const properties = useLoaderData();
 
 
     // this will give use URL type search ability like - /properties?type=anything - by useSearchParam api
     const typeFilter = searchParams.get('type')
-    // console.log(typeFilter)
+    console.log(typeFilter)
 
 
     /* 
@@ -32,13 +34,13 @@ export default function Properties(){
     Then we take displayPropertyType and get our preferred things like {property.name}
     */
     let displayPropertyType = typeFilter 
-        ? properties.filter(property => property.type === typeFilter) 
+        ? properties.filter(property => property.type.toLowerCase() === typeFilter) 
         : properties;
     console.log(displayPropertyType)
 
 
 
-    // Mapping properties after useEffect hook
+    // Mapping properties
     const propertyElements = displayPropertyType.map(property => (
         <div key={property.id} className="property-title"> 
             {/* <Link to={`/properties/${property.id}`}> */}
