@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+// import { useState } from "react";
 import "../../index.css";
 import { Link, useLoaderData, useSearchParams } from "react-router-dom";
 import { getProperties } from "../../api";
@@ -11,7 +11,8 @@ export function loader(){
 export default function Properties(){
     // get search parameter api and use as state
     const [searchParams, setSearchParams] = useSearchParams()
-    const [error, setError] = useState(null)
+    // const [error, setError] = useState(null)
+    const error = null;
     // get react-router loader api 
     const properties = useLoaderData();
 
@@ -32,7 +33,7 @@ export default function Properties(){
     Then we take displayPropertyType and get our preferred things like {property.name}
     */
     let displayPropertyType = typeFilter 
-        ? properties.filter(property => property.type === typeFilter) 
+        ? properties.filter(property => property.type.toLowerCase() === typeFilter) 
         : properties;
     console.log(displayPropertyType)
 
