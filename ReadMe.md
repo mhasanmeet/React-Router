@@ -1,12 +1,12 @@
 ## React Router 6 - With Protected Routes (In Landlord Sections)
 
-## **Protected Routes:** preventing renders 
+**Protected Routes:** preventing renders 
 
 **Approach:** If user isn't logged in, stop data fetching by blocking components from rendering and send to them Login page. Since fetching is happening inside the components, if those components never render, the fetching never happens. 
 
 We put `authRequired Layout Route` just before dashboard(landlord) page. If `authRequired Layout Route` is not authorize then dashboard, landlordProperties, landlordPropertiesDetails page will not render, instead it will navigate to Login page. 
 
-## **Loader `redirect()`**
+**Loader `redirect()`**
 
 **Approach:** If user isn't logged In, redirect to Login page when protected route loaders run, before any route rendering happens. 
 
@@ -59,4 +59,17 @@ Current downside: need to happen in every protected route's loader. (for this we
     // get properties by loader
     const property = useLoaderData()
     ```
-3. We also get `loader` promise and `useLoaderData()` api for `landlordProperties` and `landlordPropertiesDetails` 
+3. We create `Login` page for authentication 
+4. For protected routes under the `LandlordLayout` we create a temporary `Authentication` utility function. If User is not logged in then they will be redirect to `Login` page
+5. For protected routes under the `LandlordLayout` we added the `Authentication` utility with `loader`
+6. For `landlordProperties` & `landlordPropertiesDetails` we move into their function
+    - Get `Authentication` utility function from `auth.jsx`
+    - Then make loader function a promise and add `requireAuth`.
+    ```js
+    export async function loader(){
+        await requireAuth();
+        return getLandlordProperties();
+    }
+    ``` 
+    - So now before move into `landlordProperties` page, user need to check if they authenticate or not
+    - We also implies this in `landlordPropertiesDetails` page

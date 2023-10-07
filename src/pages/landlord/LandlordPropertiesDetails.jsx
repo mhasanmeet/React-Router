@@ -3,9 +3,11 @@ import { NavLink, Outlet, useLoaderData } from "react-router-dom"
 import arrow from "../../assets/arrow-left.svg";
 import "../../index.css";
 import { getLandlordProperties } from "../../api";
+import { requireAuth } from "../../auth";
 
 // Get landlord properties per id and return promise
-export function loader({params}){
+export async function loader({params}){
+  await requireAuth()
   return getLandlordProperties(params.id)
 }
 

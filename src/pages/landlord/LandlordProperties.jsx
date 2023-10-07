@@ -2,9 +2,11 @@
 import "../../index.css";
 import { Link, useLoaderData } from "react-router-dom";
 import { getLandlordProperties } from "../../api";
+import { requireAuth } from "../../auth";
 
 // Get landlord properties and return promise
-export function loader(){
+export async function loader(){
+  await requireAuth();
   return getLandlordProperties();
 }
 

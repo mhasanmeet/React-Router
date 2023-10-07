@@ -52,24 +52,23 @@ const router = createBrowserRouter(createRoutesFromElements(
       {/* <NavLink to="/landlord"></NavLink> */}
       <Route 
         index 
-        element={<Dashboard/>}
+        // Authenticated
         loader={async () => await requireAuth()}
+        element={<Dashboard/>}
       />
       {/* <NavLink to="/landlord/income"></NavLink> */}
       <Route 
         path='income' 
+        // Authenticated
+        loader = {async () => await requireAuth()}
         element={<Income/>}
-        loader = {async () => {
-          return null
-        }}
       />
       {/* <NavLink to="/landlord/reviews"></NavLink> */}
       <Route 
         path='reviews' 
+        // Authenticated
+        loader = {async () => await requireAuth()}
         element={<Reviews/>}
-        loader = {async () => {
-          return null
-        }}
       />
       {/* <NavLink to="/landlord/properties"></NavLink> */}
       <Route 
@@ -87,26 +86,23 @@ const router = createBrowserRouter(createRoutesFromElements(
         {/* <NavLink to="/landlord/properties/:id/info"></NavLink>, it is default route that's why we eliminate info route, rather use index */}
         <Route 
           index 
+          // Authenticated
+          loader = {async () => await requireAuth()}
           element={<PropertyInfo/>}
-          loader = {async () => {
-            return null
-          }}
         />
         {/* <NavLink to="/landlord/properties/:id/photo"></NavLink> */}
         <Route 
           path='photo' 
+          // Authenticated
+          loader = {async () => await requireAuth()}
           element={<PropertyPhoto/>}
-          loader = {async () => {
-            return null
-          }}
         />
         {/* <NavLink to="/landlord/properties/:id/pricing"></NavLink> */}
         <Route 
-          path='pricing' 
+          // Authenticated
           element={<PropertyPricing/>}
-          loader = {async () => {
-            return null
-          }}
+          loader = {async () => await requireAuth()}
+          path='pricing' 
         />
       </Route>
     </Route>
