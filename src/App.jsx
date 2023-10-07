@@ -19,8 +19,10 @@ import PropertyInfo from './pages/landlord/PropertyInfo';
 import PropertyPhoto from './pages/landlord/PropertyPhoto';
 import PropertyPricing from './pages/landlord/PropertyPricing';
 import NotFound from './pages/NotFound';
-import "./server";
+import Login from './pages/Login';
 import Error from './components/Error';
+import { requireAuth } from './auth';
+import "./server";
 
 
 // Data Api function for handle loader
@@ -30,6 +32,8 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route index element={<Home />}/>
     {/* <NavLink to="/about"></NavLink> */}
     <Route path='about' element={<About />}/>
+    {/* <NavLink to="/login"></NavLink> */}
+    <Route path='login' element={<Login/>}/>
     {/* <NavLink to="/properties"></NavLink> */}
     <Route 
       path='properties' 
@@ -49,9 +53,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route 
         index 
         element={<Dashboard/>}
-        loader = {async () => {
-          return null
-        }}
+        loader={async () => await requireAuth()}
       />
       {/* <NavLink to="/landlord/income"></NavLink> */}
       <Route 
