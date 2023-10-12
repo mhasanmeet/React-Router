@@ -25,7 +25,7 @@ Current downside: need to happen in every protected route's loader. (for this we
 />
 ```
 
-2. As we previously did in `properties` page, we also add loader promise in `propertyDetails` page. Bute here is a difference, here we get unique property with id params, for that we need to change in api code 
+2. As we previously did in `properties` page, we also add loader promise in `propertyDetails` page. But here is a difference, here we get unique property with id params, for that we need to change in api code 
 
     ```js
 
@@ -73,3 +73,22 @@ Current downside: need to happen in every protected route's loader. (for this we
     ``` 
     - So now before move into `landlordProperties` page, user need to check if they authenticate or not
     - We also implies this in `landlordPropertiesDetails` page
+7. Send login message prompt in `login page` from `auth.js`
+8. Grab message from search params in `login` page by `URL` web api.
+    * But instead of react-router `useSearchParam` api we can work with available web api, from where react-router `useSearchParam` borrowed from 😲. The name of this web api is [Request: url property](https://developer.mozilla.org/en-US/docs/Web/API/Request/url)
+    * First we get native web api by `loader function` 
+    ```js
+    
+    export function loader({request}){
+        return new URL(request.url).searchParams.get("message")
+    }
+    ```
+    * Then get the loader in route
+    ```js
+    
+    <Route path='login' element={<Login/>} loader={loginLoader}/>
+    ```
+    * Then get the loader data in `Login` component by `useLoaderData`
+    `const message = useLoaderData()`
+    * Then conditionally render if there is any request message exist in return section
+    `{ message && <h2>{message}</h2>}`

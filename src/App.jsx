@@ -19,7 +19,7 @@ import PropertyInfo from './pages/landlord/PropertyInfo';
 import PropertyPhoto from './pages/landlord/PropertyPhoto';
 import PropertyPricing from './pages/landlord/PropertyPricing';
 import NotFound from './pages/NotFound';
-import Login from './pages/Login';
+import Login, {loader as loginLoader} from './pages/Login';
 import Error from './components/Error';
 import { requireAuth } from './auth';
 import "./server";
@@ -33,7 +33,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     {/* <NavLink to="/about"></NavLink> */}
     <Route path='about' element={<About />}/>
     {/* <NavLink to="/login"></NavLink> */}
-    <Route path='login' element={<Login/>}/>
+    <Route path='login' element={<Login/>} loader={loginLoader}/>
     {/* <NavLink to="/properties"></NavLink> */}
     <Route 
       path='properties' 
@@ -47,6 +47,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       element={<PropertyDetails/>}
       loader={propertyDetailsLoader}
     />
+
 
     <Route path='/landlord' element={<LandlordLayout/>}>
       {/* <NavLink to="/landlord"></NavLink> */}
@@ -77,12 +78,13 @@ const router = createBrowserRouter(createRoutesFromElements(
         loader = {landlordProperties}
       />
       {/* <NavLink to="/landlord/properties/:id"></NavLink> */}
-      
       <Route 
         path='properties/:id' 
         element={<LandlordPropertiesDetails/>}
         loader = {landlordPropertiesDetails}
       >
+
+
         {/* <NavLink to="/landlord/properties/:id/info"></NavLink>, it is default route that's why we eliminate info route, rather use index */}
         <Route 
           index 
